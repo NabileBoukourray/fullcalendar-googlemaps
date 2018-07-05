@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>App</title>
+    <link rel="stylesheet" href="/static/dist/bundle.css">
+</head>
+
+<style>
+    #map {
+        height: 700px;
+    }
+</style>
+
+<body>
+
+    <nav class="navbar  navbar-light bg-color-deep-purple-900">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <h3 class="color-yellow-500">APP</h3>
+            </a>
+
+            <ul class="nav mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="/flatpickr">
+                        <span class="lead color-yellow-500">Flatpickr</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/fullcalendar">
+                        <span class="lead color-yellow-500">Fullcalendar</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <div class="container my-sm-5">
+
+        <div class="my-sm-4">
+            <h4>Fullcalendar</h4>
+        </div>
+        <div class="my-sm-4">
+            <div id="calendar"></div>
+        </div>
+
+    </div>
+
+
+    <div id="map" style="display: none"></div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBFB2BlS2_z83LTCs6aRlyMoet6vR9-0k&callback=initMap" async
+        defer></script>
+    <script>
+        var map;
+
+        function initMap(events) {
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 52.271594, lng: 5.877798 },
+                zoom: 8
+            });
+
+
+
+            for (var event of events) {
+                var myLatLng = { lat: event.lat, lng: event.lng };
+
+                console.log(event);
+                var marker = new google.maps.Marker({
+                    position: myLatLng,
+                    map: map,
+                    title: event.title
+                });
+
+            }
+
+
+        }
+    </script>
+
+
+    <script src="/static/dist/bundle.js"></script>
+
+
+</body>
+
+</html>
