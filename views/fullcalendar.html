@@ -66,8 +66,7 @@
             });
 
 
-
-            for (var event of events) {
+            events.map(event => {
                 var myLatLng = { lat: event.lat, lng: event.lng };
 
                 console.log(event);
@@ -76,9 +75,7 @@
                     map: map,
                     title: event.title
                 });
-
-            }
-
+            });
 
         }
     </script>
